@@ -1,0 +1,131 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (99.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (110.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+Migrating to CreatePosts (20200829032152)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20200829032152_create_posts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200829032152"]]
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (91.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+Migrating to CreateComments (20200829061648)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "post_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_2fd19c0db7"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+)[0m
+  ↳ db/migrate/20200829061648_create_comments.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_post_id" ON "comments" ("post_id")[0m
+  ↳ db/migrate/20200829061648_create_comments.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200829061648"]]
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (106.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-29 06:17:24.805228"], ["updated_at", "2020-08-29 06:17:24.805228"]]
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (81.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/bin/rake:23
+Started GET "/" for ::1 at 2020-08-29 16:24:26 +1000
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 78ms (Views: 35.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-29 16:24:35 +1000
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:15
+  Rendered posts/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 2449ms (Views: 2433.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2020-08-30 10:06:59 +1000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (3.4ms)
+Completed 200 OK in 78ms (Views: 50.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-30 10:07:08 +1000
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (15.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:15
+  Rendered posts/index.html.erb within layouts/application (18.7ms)
+Completed 200 OK in 733ms (Views: 684.3ms | ActiveRecord: 15.8ms)
+
+
+Started GET "/comments" for ::1 at 2020-08-30 10:07:15 +1000
+Processing by CommentsController#index as HTML
+  Rendering comments/index.html.erb within layouts/application
+  [1m[36mComment Load (24.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/comments/index.html.erb:15
+  Rendered comments/index.html.erb within layouts/application (27.7ms)
+Completed 200 OK in 145ms (Views: 43.3ms | ActiveRecord: 25.2ms)
+
+
+Started GET "/" for ::1 at 2020-08-31 14:39:05 +1000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (3.4ms)
+Completed 200 OK in 70ms (Views: 35.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2020-08-31 14:39:12 +1000
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/kwai/.rvm/gems/ruby-2.5.1/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (3.0ms)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-31 14:39:21 +1000
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (15.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:15
+  Rendered posts/index.html.erb within layouts/application (18.5ms)
+Completed 200 OK in 478ms (Views: 417.6ms | ActiveRecord: 15.9ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-31 14:39:25 +1000
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:15
+  Rendered posts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 29ms (Views: 27.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/posts" for ::1 at 2020-08-31 15:03:00 +1000
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/kwai/.rvm/gems/ruby-2.5.1/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/views/posts/index.html.erb:15
+  Rendered posts/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 286ms (Views: 272.9ms | ActiveRecord: 0.5ms)
+
+
